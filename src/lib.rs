@@ -140,7 +140,7 @@ impl core::fmt::Debug for Status {
 #[derive(Debug)]
 pub struct FlashInfo {
     /// The chip ID.
-    pub id: u32,
+    pub id: JedecId,
 
     /// The page size (and alignment).
     pub page_size: u16,
@@ -232,7 +232,7 @@ impl<SPI: SpiDevice> Flash<SPI> {
         let page_size = 256;
         let block_size = sector_size * 16;
         Ok(FlashInfo {
-            id: 0,
+            id,
             page_size,
             sector_size,
             sector_count: block_count * 16,
